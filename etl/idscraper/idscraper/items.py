@@ -8,7 +8,8 @@
 import scrapy
 
 
-class IdscraperItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
+class AlphaItem(scrapy.Item):
+    id = scrapy.Field()
+    name = scrapy.Field()
+    url = scrapy.Field()
     pass

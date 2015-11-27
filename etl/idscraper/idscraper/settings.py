@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'idscraper.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'idscraper (+http://www.yourdomain.com)'
+USER_AGENT = 'tripadvisor-legacy-hackathon-scraper (+https://github.com/guyhughes)'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS=32
