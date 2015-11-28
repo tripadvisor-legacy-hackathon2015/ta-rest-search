@@ -11,7 +11,7 @@ BASEURL = "http://es-hack-2.dai.gl:9200"
 
 def fmt_response(resp):
     if not resp:
-        return ""
+        return "null"
     return "%s : %s" % (resp.status_code, resp.text[:100])
 
 def create_index():
@@ -40,17 +40,8 @@ for fname in sys.argv[1:]:
     with open(fname, 'r') as infile:
         restaurant_obj = json.load(infile)
         
-        # massage the data to have a 'coordinates' object that we've defined in the mapping as geo_point
-        coord = {'lat': restaurant_obj['latitude'], 'lon': restaurant_obj['longitude']}
-        post_req = {'coordinates': coord}
-        
-        # copy all the fields from input object
-        for field in restaurant_obj.keys():
-            if field in ['latitude', 'longitude']: continue
-            post_req[field] = restaurant_obj[field]
-        
         try:
-            res = requests.post(BASEURL + '/locationidx/location', data=json.dumps(post_req))
+            res = requests.post(BASEURL + '/locationidx/location', data=json.dumps(restaurant_obj))
             print(fmt_response(res))
         except Error as e:
             print("ERR: %s" % e)
