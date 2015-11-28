@@ -12,7 +12,7 @@ class AlphaSpider(CrawlSpider):
     #scrapy.spiders.Rule(link_extractor, callback=None, cb_kwargs=None, follow=None, process_links=None, process_request=None)
     rules = (
         Rule(LinkExtractor(restrict_xpaths=("//a[contains(concat(' ', normalize-space(@class), ' '), ' next')]"),allow=('.*',)),follow=True,callback='parse_item'),
-    ) 
+    )
 
     def parse_item(self, response):
         self.logger.info('Parsing URL %s', response.url )
@@ -32,3 +32,7 @@ class AlphaSpider(CrawlSpider):
             #  </a>'
             yield item
         pass
+
+    def parse_start_url(self,response):
+        list(self.parse_item(response))
+        
